@@ -1,0 +1,41 @@
+endpoints:
+  health:
+    sensitive: false
+
+spring:
+  application:
+    name: configuration-service
+  cloud:
+    config:
+      server:
+        git:
+          # switch to https uri
+          uri: ___GIT_CONFIGURATION_REPOSITORY___
+          username: ___USER_NAME___
+          password: ___PASSWORD___
+
+eureka:
+  uri: http://eureka-service:8761
+  instance:
+    preferIpAddress: false
+  client:
+    serviceUrl:
+      defaultZone: ${eureka.uri:http://127.0.0.1:8761}/eureka/
+
+server:
+  port: 8888
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Configuration service
+    version: @project.version@
+    artifact: @project.artifactId@
+
+
+---
+spring:
+  profiles: local
+  cloud:
+      discovery:
+        enabled: false
