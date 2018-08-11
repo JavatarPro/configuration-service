@@ -10,9 +10,9 @@ spring:
       server:
         git:
           # switch to https uri
-          uri: ___GIT_CONFIGURATION_REPOSITORY___
-          username: ___USER_NAME___
-          password: ___PASSWORD___
+          uri: ${uri}
+          username: ${username}
+          password: ${password}
 
 eureka:
   uri: http://eureka-service:8761
